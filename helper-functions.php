@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function pce_send_email( $email_post, $user, $placeholders = array() ) {
   $to      = $user->user_email;
-  $subject = get_the_title( $email_post );
+  $subject = pce_process_placeholders( get_the_title( $email_post ), $user, $placeholders );
   $body    = pce_process_placeholders( get_the_content( null, false, $email_post ), $user, $placeholders );
   $headers = array( 'Content-Type: text/html; charset=UTF-8' );
   return wp_mail( $to, $subject, $body, $headers );
