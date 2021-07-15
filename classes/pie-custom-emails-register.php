@@ -16,6 +16,8 @@
        add_action( 'init', array( $this, 'register_post_type' ) );
        add_action( 'init', array( $this, 'register_taxonomy' ) );
        add_action( 'init', array( $this, 'register_taxonomy_to_post' ) );
+       add_filter( 'gettext', array( $this, 'replace_excerpt_labels_with_descriptive_labels' ), 10, 2 );
+
      }
 
      /**
@@ -95,6 +97,26 @@
       */
      public function register_taxonomy_to_post() {
        register_taxonomy_for_object_type( 'trigger', 'pie_email' );
+     }
+
+     public function replace_excerpt_labels_with_descriptive_labels( $translation, $original ) {
+
+         global $post_type;
+
+         if ( is_admin() && $post_type !== 'pie_email' ) {
+             if ( 'Excerpt' == $original ) {
+                 return __( 'Plain Text Content', 'pie_email' );
+             } else{
+                 $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
+                 if ($pos !== false) {
+                     return  __( 'Content to be used for text/plain content wihtin the body of the email', 'pie_email' );
+                 }
+             }
+         }
+
+
+
+         return $translation;
      }
    }
  }
