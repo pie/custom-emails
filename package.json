@@ -1,0 +1,12 @@
+{
+  "name": "pie-custom-emails",
+  "version": "1.0.0",
+  "description": "A WordPress plugin to enable custom emails",
+  "main": "index.js",
+  "repository": "git@bitbucket.org:pieweb/pie-custom-emails.git",
+  "author": "dev@pie.co.de",
+  "license": "GPL",
+  "scripts": {
+    "deploy-wpe": "sh -c 'rsync -avPC ./ ${0}@${0}.ssh.wpengine.net:~/sites/${0}/wp-content/plugins/pie-custom-emails'"
+  }
+}
