@@ -101,15 +101,15 @@
 
      public function replace_excerpt_labels_with_descriptive_labels( $translation, $original ) {
 
-         global $post_type;
+         global $post;
 
-         if ( is_admin() && $post_type !== 'pie_email' ) {
+         if ( is_admin() && $post->post_type == 'pie_email' ) {
              if ( 'Excerpt' == $original ) {
-                 return __( 'Plain Text Content', 'pie_email' );
+                 return __( 'Plain Text Content', 'pie-custom-emails' );
              } else{
                  $pos = strpos($original, 'Excerpts are optional hand-crafted summaries of your');
                  if ($pos !== false) {
-                     return  __( 'Content to be used for text/plain content wihtin the body of the email', 'pie_email' );
+                     return  __( 'Content to be used for text/plain content within the body of the email', 'pie-custom-emails' );
                  }
              }
          }
