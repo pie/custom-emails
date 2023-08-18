@@ -97,3 +97,15 @@ function pce_process_placeholders($content, $user, $placeholders = array())
     $to_replace = wp_parse_args($placeholders, $defaults);
     return str_replace(array_keys($to_replace), array_values($to_replace), $content);
 }
+
+/**
+ * Filter ACF date in format(Ymd) to F j, Y
+ */
+function pce_filter_acf_date($date)
+{
+    if ($new_date = DateTime::createFromFormat('Ymd', $date)) {
+        return $new_date;
+    }
+    return $date;
+}
+add_filter('pce_filter_acf_date', 'pce_filter_acf_date');
