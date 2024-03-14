@@ -1,0 +1,13 @@
+{
+    "name": "pie/custom-emails",
+    "description": "Adds a custom post type for emails.",
+    "type": "wordpress-plugin",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "The team at PIE",
+            "email": "dev@pie.co.de"
+        }
+    ],
+    "require": {}
+}
